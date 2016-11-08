@@ -13,6 +13,32 @@ app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 
-app.get('/ks/rhel67', function (req, res) {
+
+app.get('/ks/:name', function (req, res, next) {
+
+  var options = {
+    //root: __dirname + '/public/',
+    root: _dirname,
+    dotfiles: 'deny',
+    headers: {
+        'x-timestamp': Date.now(),
+        'x-sent': true
+    }
+  };
+
+  var fileName = req.params.name;
+  res.sendFile(fileName, options, function (err) {
+    if (err) {
+      console.log(err);
+      res.status(err.status).end();
+    }
+    else {
+      console.log('Sent:', fileName);
+    }
+  });
+
+});
+
+app.get('/static/rhel67', function (req, res) {
     res.sendFile(path.join(__dirname + '/rhel67.ks'));
 });
