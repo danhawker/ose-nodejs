@@ -12,3 +12,7 @@ http.createServer(app).listen(app.get('port'), app.get('ip'), function(){
 app.get('/', function (req, res) {
   res.send('Hello World!');
 });
+
+app.get('/rhel67.ks', function (req, res) {
+    res.sendFile(path.join(__dirname + '/rhel67.ks'));
+});
