@@ -13,6 +13,6 @@ app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 
-app.get('/rhel67.ks', function (req, res) {
+app.get('/ks/rhel67', function (req, res) {
     res.sendFile(path.join(__dirname + '/rhel67.ks'));
 });
